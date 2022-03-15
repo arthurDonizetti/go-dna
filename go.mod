@@ -1,4 +1,4 @@
-module github.com/arthurDonizetti/dna
+module github.com/arthurDonizetti/go-dna
 
 go 1.16
 

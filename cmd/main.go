@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/arthurDonizetti/dna/internals/domain"
+	"github.com/arthurDonizetti/go-dna/internals/domain"
 	"fmt"
 )
 

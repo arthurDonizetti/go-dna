@@ -3,7 +3,7 @@ package domain_test
 import (
 	"testing"
 
-	"github.com/arthurDonizetti/dna/internals/domain"
+	"github.com/arthurDonizetti/go-dna/internals/domain"
 	"github.com/stretchr/testify/assert"
 )
 
