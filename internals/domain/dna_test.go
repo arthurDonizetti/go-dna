@@ -13,9 +13,9 @@ type mockSequence struct {
 }
 
 func newSequence() []mockSequence {
-	return []mockSequence {
+	return []mockSequence{
 		{
-			sequence: []string {
+			sequence: []string{
 				"CTGAGA",
 				"CTATGC",
 				"TATTGT",
@@ -23,23 +23,23 @@ func newSequence() []mockSequence {
 				"CCCCTA",
 				"TCACTG",
 			},
-			expected : true,
+			expected: true,
 		},
 		{
-			sequence: []string {
+			sequence: []string{
 				"GGGGAT",
 			},
 			expected: false,
 		},
 		{
-			sequence: []string {
+			sequence: []string{
 				"GGGGAT",
 				"CCCCTG",
 			},
 			expected: true,
 		},
 		{
-			sequence: []string {
+			sequence: []string{
 				"ATGAGA",
 				"CAATGC",
 				"TAATGT",
@@ -51,25 +51,62 @@ func newSequence() []mockSequence {
 		},
 		{
 			sequence: []string{
-			 	"AACGCTACAAGCTCGAAGGA",
-			 	"GGGAGGCAACTCTGCCGCTC",
-			 	"GATCCTTTCAACGGGGAAAA",
-			 	"GCGCTCGTTAAATACTGACT",
-			 	"ATGATGAATATCCGCTGTCA",
-			 	"GGGGCATCTCGTGAAGCTTT",
-			 	"ACCCCTGGCCGCTTTTTTCT",
-			 	"CAAAATATGATACTCAGGCA",
-			 	"AACACGCCGCAGTGGGGTTG",
-			 	"GGTACCCGGCCCTACGAGAA",
-			 	"CGTACCTCGGGCCGTATCCT",
-			 	"GGTGGTTTATAACACCACTG",
-			 	"CCACGGCGTCGTAGTAACGT",
-			 	"GCTATTCTCCGATGGAAGCG",
-			 	"CGTCCACAAAGGGTCCAACA",
-			 	"CAGTACCCGTTTCCCTAGAG",
-			 	"CTTTAATACGAGGGGCTATC",
-			 	"GTGTTTGTGACATCTCTTCA",
+				"AACGCTACAAGCTCGAAGGA",
+				"GGGAGGCAACTCTGCCGCTC",
+				"GATCCTTTCAACGGGGAAAA",
+				"GCGCTCGTTAAATACTGACT",
+				"ATGATGAATATCCGCTGTCA",
+				"GGGGCATCTCGTGAAGCTTT",
+				"ACCCCTGGCCGCTTTTTTCT",
+				"CAAAATATGATACTCAGGCA",
+				"AACACGCCGCAGTGGGGTTG",
+				"GGTACCCGGCCCTACGAGAA",
+				"CGTACCTCGGGCCGTATCCT",
+				"GGTGGTTTATAACACCACTG",
+				"CCACGGCGTCGTAGTAACGT",
+				"GCTATTCTCCGATGGAAGCG",
+				"CGTCCACAAAGGGTCCAACA",
+				"CAGTACCCGTTTCCCTAGAG",
+				"CTTTAATACGAGGGGCTATC",
+				"GTGTTTGTGACATCTCTTCA",
 				"GTAACAGAGTCCTCCCGGTC",
+				"CAAAATATGATACTCAGGCA",
+			},
+			expected: true,
+		},
+		{
+			sequence: []string {
+				"ACGT",
+				"TGCA",
+				"GCAT",
+				"CATG",
+			},
+			expected: false,
+		},
+		{
+			sequence: []string {
+				"ACGT",
+				"AGCT",
+				"ACAT",
+				"AATT",
+			},
+			expected: true,
+		},
+		{
+			sequence: []string {
+				"ACGA",
+				"AGAA",
+				"AAAT",
+				"AATG",
+			},
+			expected: true,
+		},
+		{
+			sequence: []string {
+				"ACGA",
+				"TAAA",
+				"GAAT",
+				"AATA",
 			},
 			expected: true,
 		},

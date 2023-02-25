@@ -5,16 +5,23 @@ import "fmt"
 type Gene struct {
 	Value                     string
 	Position                  *Position
+	VisitedFlow               VisitedFlow
 	NeighbourInRow            *Gene
 	NeighbourInCol            *Gene
 	NeighbourInDiagonalUpDown *Gene
 	NeighbourInDiagonalDownUp *Gene
-
 }
 
 type Position struct {
 	row int
 	col int
+}
+
+type VisitedFlow struct {
+	Row            bool
+	Col            bool
+	DiagonalUpDown bool
+	DiagonalDownUp bool
 }
 
 type Search interface {
@@ -35,10 +42,21 @@ func NewGene(value string, row int, col int) *Gene {
 }
 
 func (g *Gene) SearchNeighbours(dna *Dna) {
-	g.FindInRow(dna)
-	g.FindInCol(dna)
-	g.FindInDiagonalUpDown(dna)
-	g.FindInDiagonalDownUp(dna)
+	if !g.VisitedFlow.Row {
+		g.FindInRow(dna)
+	}
+
+	if !g.VisitedFlow.Col {
+		g.FindInCol(dna)
+	}
+
+	if !g.VisitedFlow.DiagonalUpDown {
+		g.FindInDiagonalUpDown(dna)
+	}
+
+	if !g.VisitedFlow.DiagonalDownUp {
+		g.FindInDiagonalDownUp(dna)
+	}
 }
 
 func (g *Gene) getGreatestNeighbourhood() int {
@@ -100,7 +118,8 @@ func (g *Gene) countNeighboursInDiagonalUpDown() int {
 }
 
 func (g *Gene) FindInRow(dna *Dna) {
-	nextPosition := fmt.Sprintf("%d%d", g.Position.row, g.Position.col + 1)
+	g.VisitedFlow.Row = true
+	nextPosition := fmt.Sprintf("%d;%d", g.Position.row, g.Position.col+1)
 	if nextGene, ok := dna.GeneMap[nextPosition]; ok && dna.GeneMap[nextPosition].Value == g.Value {
 		g.NeighbourInRow = nextGene
 		nextGene.FindInRow(dna)
@@ -108,7 +127,8 @@ func (g *Gene) FindInRow(dna *Dna) {
 }
 
 func (g *Gene) FindInCol(dna *Dna) {
-	nextPosition := fmt.Sprintf("%d%d", g.Position.row + 1, g.Position.col)
+	g.VisitedFlow.Col = true
+	nextPosition := fmt.Sprintf("%d;%d", g.Position.row+1, g.Position.col)
 	if nextGene, ok := dna.GeneMap[nextPosition]; ok && dna.GeneMap[nextPosition].Value == g.Value {
 		g.NeighbourInCol = nextGene
 		nextGene.FindInCol(dna)
@@ -116,7 +136,8 @@ func (g *Gene) FindInCol(dna *Dna) {
 }
 
 func (g *Gene) FindInDiagonalUpDown(dna *Dna) {
-	nextPosition := fmt.Sprintf("%d%d", g.Position.row + 1, g.Position.col + 1)
+	g.VisitedFlow.DiagonalUpDown = true
+	nextPosition := fmt.Sprintf("%d;%d", g.Position.row+1, g.Position.col+1)
 	if nextGene, ok := dna.GeneMap[nextPosition]; ok && dna.GeneMap[nextPosition].Value == g.Value {
 		g.NeighbourInDiagonalUpDown = nextGene
 		nextGene.FindInDiagonalUpDown(dna)
@@ -124,7 +145,8 @@ func (g *Gene) FindInDiagonalUpDown(dna *Dna) {
 }
 
 func (g *Gene) FindInDiagonalDownUp(dna *Dna) {
-	nextPosition := fmt.Sprintf("%d%d", g.Position.row - 1, g.Position.col + 1)
+	g.VisitedFlow.DiagonalDownUp = true
+	nextPosition := fmt.Sprintf("%d;%d", g.Position.row-1, g.Position.col+1)
 	if nextGene, ok := dna.GeneMap[nextPosition]; ok && dna.GeneMap[nextPosition].Value == g.Value {
 		g.NeighbourInDiagonalDownUp = nextGene
 		nextGene.FindInDiagonalDownUp(dna)

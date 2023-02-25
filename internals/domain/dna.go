@@ -20,7 +20,7 @@ func NewDna(sequence []string) *Dna {
 	for i, rowGene := range dna.Sequence {
 		for j, colGene := range strings.Split(rowGene, "") {
 			gene := NewGene(colGene, i, j)
-			dna.GeneMap[fmt.Sprintf("%d%d", gene.Position.row, gene.Position.col)] = gene
+			dna.GeneMap[fmt.Sprintf("%d;%d", gene.Position.row, gene.Position.col)] = gene
 		}
 	}
 
