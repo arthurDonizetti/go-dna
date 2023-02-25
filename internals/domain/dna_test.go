@@ -49,6 +49,30 @@ func newSequence() []mockSequence {
 			},
 			expected: true,
 		},
+		{
+			sequence: []string{
+			 	"AACGCTACAAGCTCGAAGGA",
+			 	"GGGAGGCAACTCTGCCGCTC",
+			 	"GATCCTTTCAACGGGGAAAA",
+			 	"GCGCTCGTTAAATACTGACT",
+			 	"ATGATGAATATCCGCTGTCA",
+			 	"GGGGCATCTCGTGAAGCTTT",
+			 	"ACCCCTGGCCGCTTTTTTCT",
+			 	"CAAAATATGATACTCAGGCA",
+			 	"AACACGCCGCAGTGGGGTTG",
+			 	"GGTACCCGGCCCTACGAGAA",
+			 	"CGTACCTCGGGCCGTATCCT",
+			 	"GGTGGTTTATAACACCACTG",
+			 	"CCACGGCGTCGTAGTAACGT",
+			 	"GCTATTCTCCGATGGAAGCG",
+			 	"CGTCCACAAAGGGTCCAACA",
+			 	"CAGTACCCGTTTCCCTAGAG",
+			 	"CTTTAATACGAGGGGCTATC",
+			 	"GTGTTTGTGACATCTCTTCA",
+				"GTAACAGAGTCCTCCCGGTC",
+			},
+			expected: true,
+		},
 	}
 }
 
@@ -57,5 +81,5 @@ func Test_DnaIsSimian(t *testing.T) {
 		dna := domain.NewDna(seq.sequence)
 		result := dna.IsSimian()
 		assert.Equal(t, seq.expected, result)
-	}	
+	}
 }
